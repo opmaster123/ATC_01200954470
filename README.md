@@ -88,6 +88,17 @@ npm run build
   ```
 - Test API routes (e.g., `http://localhost:8080/api`) if defined in `backend/routes/`.
 
+ ### 5. How To Run Both
+ - If you want to run both the Frontend and the Backend concurrently at the same time, you can go to the root of the project after executing:
+```bash
+npm install
+```
+- and run
+```bash
+npm run dev
+```
+Since Run Scripts are defined in the `package.json` for the Backend and Frontend, seperately or Both
+
 ## Troubleshooting
 - **Backend Fails to Start**:
   - Check if `MONGODB_URI` is correct in `backend/.env`.
