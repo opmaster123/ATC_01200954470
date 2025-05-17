@@ -1,0 +1,153 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(70%);
+}
+
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+}
+
+.hero-text h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.hero-text p {
+  font-size: 1.1rem;
+}
+
+.highlight {
+  color: #f6e05e; /* yellow-400 */
+  font-weight: bold;
+}
+
+.container {
+  padding: 4rem 2rem;
+  background-color: white;
+  min-height: 100vh;
+}
+
+.header {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #2d3748;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.card {
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background: white;
+}
+
+.card-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.card-body {
+  display: flex;
+}
+
+.card-date {
+  border-right: 1px solid #e2e8f0;
+  padding: 1.5rem;
+  text-align: center;
+  width: 120px;
+}
+
+.card-date .month {
+  color: #805ad5;
+  font-weight: 600;
+}
+
+.card-date .date {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2d3748;
+}
+
+.card-details {
+  padding: 1rem;
+  flex: 1;
+}
+
+.card-details h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.card-details p {
+  font-size: 0.9rem;
+  color: #4a5568;
+  margin: 0.2rem 0;
+}
+
+.card-details .time {
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background-color: #718096;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.cta {
+  margin-top: 5rem;
+  text-align: center;
+}
+
+.cta h3 {
+  font-size: 1.5rem;
+  color: #ecc94b;
+  margin-bottom: 1rem;
+}
+
+.cta p {
+  color: #faf089;
+  margin-bottom: 1.5rem;
+}
+
+.cta button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background-color: #ecc94b;
+  border: none;
+  border-radius: 4px;
+  color: #2d3748;
+  cursor: pointer;
+}
