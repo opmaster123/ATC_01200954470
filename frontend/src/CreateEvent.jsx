@@ -214,7 +214,6 @@ export default function CreateEvent() {
 
         <form onSubmit={handleSubmit}>
           <VStack spacing={4}>
-            {/* Event Name */}
             <FormControl isRequired isInvalid={errors.name}>
               <FormLabel>Event Name</FormLabel>
               <Input
@@ -226,7 +225,6 @@ export default function CreateEvent() {
               <FormErrorMessage>{errors.name}</FormErrorMessage>
             </FormControl>
 
-            {/* Description */}
             <FormControl isRequired isInvalid={errors.description}>
               <FormLabel>Description</FormLabel>
               <Textarea
@@ -239,7 +237,6 @@ export default function CreateEvent() {
               <FormErrorMessage>{errors.description}</FormErrorMessage>
             </FormControl>
 
-            {/* Category */}
             <FormControl isRequired isInvalid={errors.category}>
               <FormLabel>Category</FormLabel>
               <Select
@@ -259,7 +256,6 @@ export default function CreateEvent() {
               <FormErrorMessage>{errors.category}</FormErrorMessage>
             </FormControl>
 
-            {/* Date and Time */}
             <FormControl isRequired isInvalid={errors.date}>
               <FormLabel>Date and Time</FormLabel>
               <Input
@@ -271,7 +267,6 @@ export default function CreateEvent() {
               <FormErrorMessage>{errors.date}</FormErrorMessage>
             </FormControl>
 
-            {/* Venue */}
             <FormControl isRequired isInvalid={errors.venue}>
               <FormLabel>Venue</FormLabel>
               <Input
@@ -283,7 +278,6 @@ export default function CreateEvent() {
               <FormErrorMessage>{errors.venue}</FormErrorMessage>
             </FormControl>
 
-            {/* Price */}
             <FormControl isRequired isInvalid={errors.price}>
               <FormLabel>Price ($)</FormLabel>
               <NumberInput
@@ -300,7 +294,6 @@ export default function CreateEvent() {
               <FormErrorMessage>{errors.price}</FormErrorMessage>
             </FormControl>
 
-            {/* Image URL */}
             <FormControl isRequired isInvalid={errors.imageUrl}>
               <FormLabel>Image URL</FormLabel>
               <Input
@@ -312,7 +305,6 @@ export default function CreateEvent() {
               <FormErrorMessage>{errors.imageUrl}</FormErrorMessage>
             </FormControl>
 
-            {/* Submit Button */}
             <Button
               type="submit"
               colorScheme="blue"
