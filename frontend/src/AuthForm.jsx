@@ -50,7 +50,6 @@ const AuthForm = () => {
         throw new Error(data.message || "Registration failed");
       }
 
-      // Store token and user data
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
 
@@ -62,7 +61,7 @@ const AuthForm = () => {
         isClosable: true,
       });
 
-      navigate("/"); // Redirect to home page
+      navigate("/");
     } catch (error) {
       toast({
         title: "Error",
@@ -104,7 +103,6 @@ const AuthForm = () => {
         throw new Error(data.message || "Login failed");
       }
 
-      // Store token and user data
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
 
@@ -116,7 +114,7 @@ const AuthForm = () => {
         isClosable: true,
       });
 
-      navigate("/"); // Redirect to home page
+      navigate("/");
     } catch (error) {
       toast({
         title: "Error",

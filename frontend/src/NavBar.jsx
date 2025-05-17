@@ -1,4 +1,12 @@
-import { Box, Flex, Button, HStack, Text, Spacer, useToast } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Button,
+  HStack,
+  Text,
+  Spacer,
+  useToast,
+} from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -8,17 +16,14 @@ export default function NavBar() {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    // Check if user is admin when component mounts
-    const user = JSON.parse(localStorage.getItem('user'));
-    setIsAdmin(user?.role === 'Admin');
+    const user = JSON.parse(localStorage.getItem("user"));
+    setIsAdmin(user?.role === "Admin");
   }, []);
 
   const handleLogout = () => {
-    // Remove token and user data from localStorage
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
 
-    // Show success message
     toast({
       title: "Logged out successfully",
       status: "success",
@@ -26,12 +31,11 @@ export default function NavBar() {
       isClosable: true,
     });
 
-    // Navigate to auth page
-    navigate('/auth');
+    navigate("/auth");
   };
 
   const handleCreateEvent = () => {
-    navigate('/create-event');
+    navigate("/create-event");
   };
 
   return (
@@ -45,15 +49,15 @@ export default function NavBar() {
 
         <HStack spacing={4}>
           {isAdmin && (
-            <Button 
-              background="white" 
+            <Button
+              background="white"
               color="black"
               onClick={handleCreateEvent}
             >
               Create Event
             </Button>
           )}
-          <Button 
+          <Button
             background="black"
             color="white"
             _hover={{ background: "gray.700" }}

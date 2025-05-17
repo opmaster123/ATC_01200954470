@@ -9,17 +9,13 @@ import AuthForm from "./AuthForm";
 import CreateEvent from "./CreateEvent";
 import EventDetails from "./EventDetails";
 import { PublicRoute, ProtectedRoute, AdminRoute } from "./ReactRoutes";
-// import { system } from "@chakra-ui/react/preset";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <ChakraProvider>
-      {/* <App /> */}
-
       <BrowserRouter>
         <Routes>
-          {/* Public Route - Auth Form */}
           <Route
             path="/auth"
             element={
@@ -29,7 +25,6 @@ root.render(
             }
           />
 
-          {/* Protected Route - Home */}
           <Route
             path="/"
             element={
@@ -39,7 +34,6 @@ root.render(
             }
           />
 
-          {/* Protected Route - Event Details */}
           <Route
             path="/events/:id"
             element={
@@ -49,7 +43,6 @@ root.render(
             }
           />
 
-          {/* Admin Protected Route - Create Event */}
           <Route
             path="/create-event"
             element={
@@ -59,7 +52,6 @@ root.render(
             }
           />
 
-          {/* Catch all route - redirect to auth */}
           <Route path="*" element={<Navigate to="/auth" replace />} />
         </Routes>
       </BrowserRouter>

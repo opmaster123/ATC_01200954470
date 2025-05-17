@@ -1,4 +1,3 @@
-// components/EventCards.jsx
 import {
   Box,
   Flex,
@@ -25,7 +24,11 @@ import dayjs from "dayjs";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 
-export default function EventCards({ events = [], onEventUpdate, onEventDelete }) {
+export default function EventCards({
+  events = [],
+  onEventUpdate,
+  onEventDelete,
+}) {
   const [bookedEvents, setBookedEvents] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
   const [eventToDelete, setEventToDelete] = useState(null);
@@ -35,25 +38,25 @@ export default function EventCards({ events = [], onEventUpdate, onEventDelete }
   const navigate = useNavigate();
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    setIsAdmin(user?.role === 'Admin');
+    const user = JSON.parse(localStorage.getItem("user"));
+    setIsAdmin(user?.role === "Admin");
   }, []);
 
   const fetchBookings = async () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) return;
 
     try {
-      const response = await fetch('http://localhost:5000/api/bookings', {
+      const response = await fetch("http://localhost:5000/api/bookings", {
         headers: {
-          'Authorization': `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
       const bookings = await response.json();
-      const bookedEventIds = bookings.map(booking => booking.event._id);
+      const bookedEventIds = bookings.map((booking) => booking.event._id);
       setBookedEvents(bookedEventIds);
     } catch (err) {
-      console.error('Error fetching bookings:', err);
+      console.error("Error fetching bookings:", err);
     }
   };
 
@@ -71,7 +74,7 @@ export default function EventCards({ events = [], onEventUpdate, onEventDelete }
     e.preventDefault();
     e.stopPropagation();
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
       toast({
         title: "Authentication required",
@@ -80,24 +83,24 @@ export default function EventCards({ events = [], onEventUpdate, onEventDelete }
         duration: 3000,
         isClosable: true,
       });
-      navigate('/login');
+      navigate("/login");
       return;
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/bookings', {
-        method: 'POST',
+      const response = await fetch("http://localhost:5000/api/bookings", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ eventId })
+        body: JSON.stringify({ eventId }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        setBookedEvents(prev => [...prev, eventId]);
+        setBookedEvents((prev) => [...prev, eventId]);
         toast({
           title: "Booking successful!",
           description: "You have successfully booked this event",
@@ -128,7 +131,7 @@ export default function EventCards({ events = [], onEventUpdate, onEventDelete }
   const handleUpdate = (event, e) => {
     e.preventDefault();
     e.stopPropagation();
-    navigate('/create-event', { state: { event } });
+    navigate("/create-event", { state: { event } });
   };
 
   const handleDeleteClick = (event, e) => {
@@ -142,13 +145,16 @@ export default function EventCards({ events = [], onEventUpdate, onEventDelete }
     if (!eventToDelete) return;
 
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/events/${eventToDelete._id}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${token}`
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        `http://localhost:5000/api/events/${eventToDelete._id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      });
+      );
 
       if (response.ok) {
         toast({
@@ -162,7 +168,7 @@ export default function EventCards({ events = [], onEventUpdate, onEventDelete }
           onEventDelete(eventToDelete._id);
         }
       } else {
-        throw new Error('Failed to delete event');
+        throw new Error("Failed to delete event");
       }
     } catch (error) {
       toast({
@@ -191,7 +197,7 @@ export default function EventCards({ events = [], onEventUpdate, onEventDelete }
         {events.map((event) => {
           const eventDate = dayjs(event.date);
           const isBooked = bookedEvents.includes(event._id);
-          
+
           return (
             <Link
               to={`/events/${event._id}`}
@@ -225,7 +231,11 @@ export default function EventCards({ events = [], onEventUpdate, onEventDelete }
                     borderRight="1px"
                     borderColor="gray.200"
                   >
-                    <Text fontSize="lg" color="purple.700" fontWeight="semibold">
+                    <Text
+                      fontSize="lg"
+                      color="purple.700"
+                      fontWeight="semibold"
+                    >
                       {eventDate.format("MMM")}
                     </Text>
                     <Text fontSize="2xl" fontWeight="bold" color="gray.800">
@@ -339,7 +349,8 @@ export default function EventCards({ events = [], onEventUpdate, onEventDelete }
             </AlertDialogHeader>
 
             <AlertDialogBody>
-              Are you sure you want to delete this event? This action cannot be undone.
+              Are you sure you want to delete this event? This action cannot be
+              undone.
             </AlertDialogBody>
 
             <AlertDialogFooter>
