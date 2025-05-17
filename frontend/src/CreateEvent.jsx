@@ -41,10 +41,9 @@ export default function CreateEvent() {
 
   useEffect(() => {
     if (isEditMode && eventToEdit) {
-      // Format the date to YYYY-MM-DDThh:mm for the datetime-local input
       const eventDate = new Date(eventToEdit.date);
       const formattedDate = eventDate.toISOString().slice(0, 16);
-      
+
       setFormData({
         name: eventToEdit.name || "",
         description: eventToEdit.description || "",
@@ -59,19 +58,19 @@ export default function CreateEvent() {
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!formData.name.trim()) {
       newErrors.name = "Event name is required";
     }
-    
+
     if (!formData.description.trim()) {
       newErrors.description = "Description is required";
     }
-    
+
     if (!formData.category) {
       newErrors.category = "Category is required";
     }
-    
+
     if (!formData.date) {
       newErrors.date = "Date and time is required";
     } else {
@@ -81,17 +80,17 @@ export default function CreateEvent() {
         newErrors.date = "Event date must be in the future";
       }
     }
-    
+
     if (!formData.venue.trim()) {
       newErrors.venue = "Venue is required";
     }
-    
+
     if (!formData.price) {
       newErrors.price = "Price is required";
     } else if (formData.price <= 0) {
       newErrors.price = "Price must be greater than 0";
     }
-    
+
     if (!formData.imageUrl.trim()) {
       newErrors.imageUrl = "Image URL is required";
     }
@@ -106,11 +105,10 @@ export default function CreateEvent() {
       ...prev,
       [name]: value,
     }));
-    // Clear error when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: undefined
+        [name]: undefined,
       }));
     }
   };
@@ -120,18 +118,17 @@ export default function CreateEvent() {
       ...prev,
       price: value,
     }));
-    // Clear error when user changes price
     if (errors.price) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        price: undefined
+        price: undefined,
       }));
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       toast({
         title: "Validation Error",
@@ -159,10 +156,10 @@ export default function CreateEvent() {
         return;
       }
 
-      const url = isEditMode 
+      const url = isEditMode
         ? `http://localhost:5000/api/events/${eventToEdit._id}`
         : "http://localhost:5000/api/events";
-      
+
       const method = isEditMode ? "PUT" : "POST";
 
       const response = await fetch(url, {
@@ -178,15 +175,22 @@ export default function CreateEvent() {
 
       if (response.ok) {
         toast({
-          title: isEditMode ? "Event updated successfully" : "Event created successfully",
-          description: isEditMode ? "Your event has been updated" : "Your event has been created",
+          title: isEditMode
+            ? "Event updated successfully"
+            : "Event created successfully",
+          description: isEditMode
+            ? "Your event has been updated"
+            : "Your event has been created",
           status: "success",
           duration: 3000,
           isClosable: true,
         });
-        navigate("/"); // Redirect to home page after successful creation/update
+        navigate("/");
       } else {
-        throw new Error(data.message || (isEditMode ? "Failed to update event" : "Failed to create event"));
+        throw new Error(
+          data.message ||
+            (isEditMode ? "Failed to update event" : "Failed to create event")
+        );
       }
     } catch (error) {
       toast({
@@ -315,7 +319,9 @@ export default function CreateEvent() {
               size="lg"
               width="full"
               isLoading={isSubmitting}
-              loadingText={isEditMode ? "Updating Event..." : "Creating Event..."}
+              loadingText={
+                isEditMode ? "Updating Event..." : "Creating Event..."
+              }
             >
               {isEditMode ? "Update Event" : "Create Event"}
             </Button>
@@ -324,4 +330,4 @@ export default function CreateEvent() {
       </VStack>
     </Box>
   );
-} 
+}
